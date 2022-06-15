@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="x5-fullscreen" content="true">
+  <meta name="full-screen" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+  <meta http-equiv="cache-control" content="max-age=0" />
+  <meta http-equiv="cache-control" content="no-cache" />
+  <title>外出申请</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    #StartDate,
+    #EndDate{
+      color: black;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="container">
+    <div class="main">
+      <form class="input-group layui-form" lay-filter="filter_form">
+        <div class="weui-cells__group weui-cells__group_form">
+          <div class="weui-cells__title">申请流程</div>
+          <div class="step_box">
+            <div class="step "><img src="./img/true.png" /><span>提交----</span></div>
+            <div class="step"><img src="./img/true.png" /><span>院级审批----</span></div>
+            <div class="step"><img src="./img/true.png" /><span>校级审批</span></div>
+          </div>
+
+          <div class="weui-cells__title">外出信息</div>
+          <div class="weui-cells weui-cells_form">
+
+            <div class="info_list">
+              <div><span class="bt">*</span>开始日期</div>
+              <div class="form_select">
+                <div class="dOutStartDate">
+                  <span id="StartDate"></span>
+                </div>
+                <span id="dOutStartDate">选择</span>
+              </div>
+            </div>
+
+            <div class="info_list">
+              <div><span class="bt">*</span>结束日期</div>
+              <div class="form_select">
+                <div class="dOutEndDate">
+                  <span id="EndDate"></span>
+                </div>
+                <span id="dOutEndDate">选择</span>
+              </div>
+            </div>
+
+            <script>
+              var today = new Date();
+              var month = today.getMonth();
+              var day = today.getDate();
+              var todayDate = "2022-";
+              if(month < 9){
+                todayDate = todayDate + "0" + (month+1);
+              }else{
+                todayDate = todayDate + (month+1);
+              }
+              var yesterDate;
+              if(day < 10){
+                yesterDate = todayDate + "-0" + (day-1);
+                todayDate = todayDate + "-0" + day;
+              }else{
+                yesterDate = todayDate + "-" + (day-1);
+                todayDate = todayDate + "-" + day;
+              }
+
+              var setDate = document.getElementById("StartDate");
+              setDate.innerText = yesterDate;
+              setDate = document.getElementById("EndDate");
+              setDate.innerText = todayDate;
+            </script>
+
+            <div class="info_list">
+              <div><span class="bt">*</span>外出地点</div>
+              <span class="in" id="place">市内</span>
+            </div>
+
+            <div class="weui-input-row" style="padding: 0 .3rem .3rem">
+              <label class="smTitle"><span class="bt">*</span><span class="sNowAddr_required">外出事由</span> </label>
+              <div class="weui-cell" style="padding: 0rem;">
+                <div class="weui-cell__bd">
+                  <textarea class="weui-textarea" name="sOutReason" id="desc" placeholder="" rows="3" readonly = "readonly"
+                    style="border: 1px solid #efefef;">外出实验</textarea>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="weui-cells__title">我的信息</div>
+          <div class="info_box">
+            <div class="info_list">
+              <span>姓名</span>
+              <span class="in" id="nname">李超</span>
+            </div>
+            <div class="info_list"><span>学号</span>
+              <span class="in" id="nnum">202020107084</span>
+            </div>
+            <div class="info_list"><span>学院</span>
+              <span class="in" id="nschool">土木与交通学院</span>
+            </div>
+            <div class="info_list">
+              <span>年级</span>
+              <span class="in" id="grade">2020</span>
+            </div>
+            <div class="info_list"><span>人员类型</span><span class="in" id="level">研究生</span></div>
+          </div>
+          <div class="bottomTips">温馨提示：每次只能发起一次外出申请，外出申请生效期间内无法再次发起申请。</div>
+        </div>
+      </form>
+    </div>
+    <div class="logo_box" style="display: block; pointer-events: none">
+      <img id="logo" src="./img/pass.png" />
+    </div>
+  </div>
+</body>
+<footer>
+  <script src="pull.js"></script>
+  <script>
+    PullToRefresh.init({
+      onRefresh: function () { },
+    })
+  </script>
+  <style>
+    .ptr--icon {
+    display: none;
+    }
+
+    body {
+      height: 40px;
+      background-color: #efefef;
+    }
+  </style>
+</footer>
+
+</html>
